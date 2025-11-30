@@ -4,12 +4,16 @@ using System.Windows.Forms;
 
 namespace hhh
 {
-    partial class UC_Services
+    public partial class UC_Services : UserControl
     {
         private System.ComponentModel.IContainer components = null;
+        private Button btnStop;
+        private Button btnRestore;
 
-        private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Button btnRestore;
+        public UC_Services()
+        {
+            InitializeComponent();
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -22,32 +26,28 @@ namespace hhh
 
         private void InitializeComponent()
         {
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnRestore = new System.Windows.Forms.Button();
+            this.btnStop = new Button();
+            this.btnRestore = new Button();
             this.SuspendLayout();
-            //
+
             // btnStop
-            //
-            this.btnStop.Location = new System.Drawing.Point(30, 40);
-            this.btnStop.Size = new System.Drawing.Size(260, 45);
+            this.btnStop.Location = new Point(30, 40);
+            this.btnStop.Size = new Size(260, 45);
             this.btnStop.Text = "Stop Unneeded Services";
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            //
+            this.btnStop.Click += new EventHandler(this.btnStop_Click);
+
             // btnRestore
-            //
-            this.btnRestore.Location = new System.Drawing.Point(30, 100);
-            this.btnRestore.Size = new System.Drawing.Size(260, 45);
+            this.btnRestore.Location = new Point(30, 100);
+            this.btnRestore.Size = new Size(260, 45);
             this.btnRestore.Text = "Restore Default Services";
-            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
-            //
+            this.btnRestore.Click += new EventHandler(this.btnRestore_Click);
+
             // UC_Services
-            //
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnRestore);
             this.Name = "UC_Services";
-            this.Size = new System.Drawing.Size(700, 500);
+            this.Size = new Size(700, 500);
             this.ResumeLayout(false);
         }
     }
 }
-
