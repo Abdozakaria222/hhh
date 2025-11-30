@@ -1,12 +1,14 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
 
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>WinExe</OutputType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <RootNamespace>hhh</RootNamespace>
     <AssemblyName>hhh</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <!-- References -->
@@ -14,17 +16,33 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.ServiceProcess" />
   </ItemGroup>
 
-  <!-- Auto include all .cs files -->
+  <!-- Compile only the needed files -->
   <ItemGroup>
-    <Compile Include="*.cs" />
-    <Compile Include="**/*.cs" />
+    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="UC_Services.cs" />
+    <Compile Include="UC_Services.Designer.cs">
+      <DependentUpon>UC_Services.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="UC_Cleaning.cs" />
+    <Compile Include="UC_Cleaning.Designer.cs">
+      <DependentUpon>UC_Cleaning.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="UC_Tweaks.cs" />
+    <Compile Include="UC_Tweaks.Designer.cs">
+      <DependentUpon>UC_Tweaks.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
 </Project>
