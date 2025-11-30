@@ -11,31 +11,25 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    # 1) تحميل سورس المشروع من GitHub
+
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2) تثبيت .NET SDK
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '6.0.x'
+    # نستخدم VSBuild (MSBuild) وليس dotnet
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1
 
-    # 3) بناء المشروع
+    # بناء المشروع باستخدام MSBuild
     - name: Build Project
-      run: |
-        dotnet build --configuration Release
+      run: msbuild hhh.csproj /p:Configuration=Release
 
-    # 4) إنشاء مجلد artifacts
     - name: Prepare Artifacts
       run: |
         mkdir artifacts
-        Copy-Item -Path "**/bin/Release/**/*" -Destination "artifacts" -Recurse -Force
+        Copy-Item -Path "bin/Release/**/*" -Destination "artifacts" -Recurse -Force
 
-    # 5) رفع الـ EXE كـ Artifact جاهز للتحميل
-    - name: Upload Build Output
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v4
-
       with:
         name: SystemOptimizer-Build
         path: artifacts
