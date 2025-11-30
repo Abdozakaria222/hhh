@@ -1,42 +1,47 @@
-namespace SystemOptimizer
+namespace hhh
 {
     partial class UC_Services
     {
         private System.ComponentModel.IContainer components = null;
-        private Button btnStop;
-        private Button btnRestore;
+
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnRestore;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && components != null) components.Dispose();
+            if (disposing && (components != null))
+                components.Dispose();
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            this.btnStop = new Button();
-            this.btnRestore = new Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnRestore = new System.Windows.Forms.Button();
+            this.SuspendLayout();
 
             // btnStop
+            this.btnStop.Location = new System.Drawing.Point(30, 40);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(260, 45);
             this.btnStop.Text = "Stop Unneeded Services";
-            this.btnStop.Width = 250;
-            this.btnStop.Height = 45;
-            this.btnStop.Top = 50;
-            this.btnStop.Left = 30;
-            this.btnStop.Click += new EventHandler(this.btnStop_Click);
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
 
             // btnRestore
+            this.btnRestore.Location = new System.Drawing.Point(30, 100);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Size = new System.Drawing.Size(260, 45);
             this.btnRestore.Text = "Restore Default Services";
-            this.btnRestore.Width = 250;
-            this.btnRestore.Height = 45;
-            this.btnRestore.Top = 110;
-            this.btnRestore.Left = 30;
-            this.btnRestore.Click += new EventHandler(this.btnRestore_Click);
+            this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
 
             // UC_Services
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnRestore);
+            this.Name = "UC_Services";
             this.Size = new System.Drawing.Size(700, 500);
+            this.ResumeLayout(false);
         }
     }
 }
