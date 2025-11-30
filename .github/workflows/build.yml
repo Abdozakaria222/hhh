@@ -34,7 +34,8 @@ jobs:
 
     # 5) رفع الـ EXE كـ Artifact جاهز للتحميل
     - name: Upload Build Output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
+
       with:
         name: SystemOptimizer-Build
         path: artifacts
