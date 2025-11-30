@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>hhh</RootNamespace>
+    <AssemblyName>hhh</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="UC_Services.cs" />
+    <Compile Include="UC_Services.Designer.cs">
+      <DependentUpon>UC_Services.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="UC_Cleaning.cs" />
+    <Compile Include="UC_Cleaning.Designer.cs">
+      <DependentUpon>UC_Cleaning.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="UC_Tweaks.cs" />
+    <Compile Include="UC_Tweaks.Designer.cs">
+      <DependentUpon>UC_Tweaks.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
