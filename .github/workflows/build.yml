@@ -1,0 +1,40 @@
+name: Build Windows Forms App
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    # 1) تحميل سورس المشروع من GitHub
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2) تثبيت .NET SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    # 3) بناء المشروع
+    - name: Build Project
+      run: |
+        dotnet build --configuration Release
+
+    # 4) إنشاء مجلد artifacts
+    - name: Prepare Artifacts
+      run: |
+        mkdir artifacts
+        Copy-Item -Path "**/bin/Release/**/*" -Destination "artifacts" -Recurse -Force
+
+    # 5) رفع الـ EXE كـ Artifact جاهز للتحميل
+    - name: Upload Build Output
+      uses: actions/upload-artifact@v3
+      with:
+        name: SystemOptimizer-Build
+        path: artifacts
