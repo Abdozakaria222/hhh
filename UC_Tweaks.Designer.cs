@@ -7,40 +7,57 @@ namespace hhh
     public partial class UC_Tweaks : UserControl
     {
         private System.ComponentModel.IContainer components = null;
-        private Button btnRegistryTweaks, btnFreeRAM, btnOptimizeAll;
+        private Button btnRegistryTweaks;
+        private Button btnFreeRAM;
+        private Button btnOptimizeAll;
 
-        public UC_Tweaks() { InitializeComponent(); }
+        public UC_Tweaks()
+        {
+            InitializeComponent();
+        }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null)) components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            btnRegistryTweaks = new Button();
-            btnFreeRAM = new Button();
-            btnOptimizeAll = new Button();
-            SuspendLayout();
+            this.btnRegistryTweaks = new Button();
+            this.btnFreeRAM = new Button();
+            this.btnOptimizeAll = new Button();
+            this.SuspendLayout();
 
-            btnRegistryTweaks.Location = new Point(50, 50);
-            btnRegistryTweaks.Size = new Size(250, 45);
-            btnRegistryTweaks.Text = "Apply Registry Tweaks";
-            btnRegistryTweaks.Click += (s, e) => MessageBox.Show("Applying registry optimizations...");
+            // btnRegistryTweaks
+            this.btnRegistryTweaks.Location = new Point(50, 50);
+            this.btnRegistryTweaks.Size = new Size(250, 45);
+            this.btnRegistryTweaks.Text = "Apply Registry Tweaks";
+            this.btnRegistryTweaks.Click += new EventHandler(this.btnRegistryTweaks_Click);
 
-            btnFreeRAM.Location = new Point(50, 110);
-            btnFreeRAM.Size = new Size(250, 45);
-            btnFreeRAM.Text = "Free RAM";
-            btnFreeRAM.Click += (s, e) => MessageBox.Show("Freeing RAM...");
+            // btnFreeRAM
+            this.btnFreeRAM.Location = new Point(50, 110);
+            this.btnFreeRAM.Size = new Size(250, 45);
+            this.btnFreeRAM.Text = "Free RAM";
+            this.btnFreeRAM.Click += new EventHandler(this.btnFreeRAM_Click);
 
-            btnOptimizeAll.Location = new Point(50, 170);
-            btnOptimizeAll.Size = new Size(250, 45);
-            btnOptimizeAll.Text = "Optimize All";
-            btnOptimizeAll.Click += (s, e) => MessageBox.Show("Applying all tweaks...");
+            // btnOptimizeAll
+            this.btnOptimizeAll.Location = new Point(50, 170);
+            this.btnOptimizeAll.Size = new Size(250, 45);
+            this.btnOptimizeAll.Text = "Optimize All";
+            this.btnOptimizeAll.Click += new EventHandler(this.btnOptimizeAll_Click);
 
-            Controls.AddRange(new Control[] { btnRegistryTweaks, btnFreeRAM, btnOptimizeAll });
-            Size = new Size(700, 500);
-            ResumeLayout(false);
+            // UC_Tweaks (UserControl)
+            this.Controls.Add(this.btnRegistryTweaks);
+            this.Controls.Add(this.btnFreeRAM);
+            this.Controls.Add(this.btnOptimizeAll);
+            this.Name = "UC_Tweaks";
+            this.Size = new Size(700, 500);
+
+            this.ResumeLayout(false);
         }
     }
+}
