@@ -7,17 +7,7 @@
     <RootNamespace>hhh</RootNamespace>
     <AssemblyName>hhh</AssemblyName>
     <OutputPath>bin\Release\</OutputPath>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="MainForm.cs" />
-    <Compile Include="MainForm.Designer.cs" />
-    <Compile Include="UC_Services.cs" />
-    <Compile Include="UC_Services.Designer.cs" />
-    <Compile Include="UC_Cleaning.cs" />
-    <Compile Include="UC_Cleaning.Designer.cs" />
-    <Compile Include="UC_Tweaks.cs" />
-    <Compile Include="UC_Tweaks.Designer.cs" />
-  </ItemGroup>
 
 </Project>
