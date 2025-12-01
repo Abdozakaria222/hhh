@@ -1,79 +1,81 @@
-namespace SystemOptimizer
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace hhh
 {
-    partial class MainForm
+    public partial class MainForm : Form
     {
-        private System.ComponentModel.IContainer components = null;
-        private Panel panelSidebar;
-        private Panel panelMain;
+        private Panel sidebar;
         private Button btnServices;
         private Button btnCleaning;
         private Button btnTweaks;
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        private Panel contentPanel;
 
         private void InitializeComponent()
         {
-            this.panelSidebar = new System.Windows.Forms.Panel();
-            this.btnTweaks = new System.Windows.Forms.Button();
-            this.btnCleaning = new System.Windows.Forms.Button();
-            this.btnServices = new System.Windows.Forms.Button();
-            this.panelMain = new System.Windows.Forms.Panel();
-            this.panelSidebar.SuspendLayout();
+            this.sidebar = new Panel();
+            this.btnServices = new Button();
+            this.btnCleaning = new Button();
+            this.btnTweaks = new Button();
+            this.contentPanel = new Panel();
             this.SuspendLayout();
 
-            // panelSidebar
-            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(35, 35, 35);
-            this.panelSidebar.Controls.Add(this.btnTweaks);
-            this.panelSidebar.Controls.Add(this.btnCleaning);
-            this.panelSidebar.Controls.Add(this.btnServices);
-            this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelSidebar.Width = 150;
+            // Sidebar
+            this.sidebar.Dock = DockStyle.Left;
+            this.sidebar.Width = 150;
+            this.sidebar.BackColor = Color.FromArgb(40, 40, 40);
 
-            // btnServices
-            this.btnServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnServices.ForeColor = System.Drawing.Color.White;
+            // Buttons
             this.btnServices.Text = "Services";
-            this.btnServices.Height = 50;
             this.btnServices.Dock = DockStyle.Top;
-            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
+            this.btnServices.Height = 50;
+            this.btnServices.Click += new EventHandler(this.btnServices_Click);
 
-            // btnCleaning
-            this.btnCleaning.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCleaning.ForeColor = System.Drawing.Color.White;
             this.btnCleaning.Text = "Cleaning";
-            this.btnCleaning.Height = 50;
             this.btnCleaning.Dock = DockStyle.Top;
-            this.btnCleaning.Click += new System.EventHandler(this.btnCleaning_Click);
+            this.btnCleaning.Height = 50;
+            this.btnCleaning.Click += new EventHandler(this.btnCleaning_Click);
 
-            // btnTweaks
-            this.btnTweaks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTweaks.ForeColor = System.Drawing.Color.White;
             this.btnTweaks.Text = "Tweaks";
-            this.btnTweaks.Height = 50;
             this.btnTweaks.Dock = DockStyle.Top;
-            this.btnTweaks.Click += new System.EventHandler(this.btnTweaks_Click);
+            this.btnTweaks.Height = 50;
+            this.btnTweaks.Click += new EventHandler(this.btnTweaks_Click);
 
-            // panelMain
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.BackColor = System.Drawing.Color.FromArgb(45, 45, 45);
+            // Content Panel
+            this.contentPanel.Dock = DockStyle.Fill;
+            this.contentPanel.BackColor = Color.WhiteSmoke;
+
+            // Add to sidebar
+            this.sidebar.Controls.Add(this.btnTweaks);
+            this.sidebar.Controls.Add(this.btnCleaning);
+            this.sidebar.Controls.Add(this.btnServices);
 
             // MainForm
-            this.BackColor = System.Drawing.Color.FromArgb(45, 45, 45);
-            this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.panelSidebar);
-            this.Text = "System Optimizer";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new System.Drawing.Size(900, 600);
+            this.ClientSize = new Size(900, 600);
+            this.Controls.Add(this.contentPanel);
+            this.Controls.Add(this.sidebar);
+            this.Text = "Windows Optimizer";
 
-            this.panelSidebar.ResumeLayout(false);
             this.ResumeLayout(false);
+        }
+
+        private void btnServices_Click(object sender, EventArgs e)
+        {
+            contentPanel.Controls.Clear();
+            contentPanel.Controls.Add(new UC_Services() { Dock = DockStyle.Fill });
+        }
+
+        private void btnCleaning_Click(object sender, EventArgs e)
+        {
+            contentPanel.Controls.Clear();
+            contentPanel.Controls.Add(new UC_Cleaning() { Dock = DockStyle.Fill });
+        }
+
+        private void btnTweaks_Click(object sender, EventArgs e)
+        {
+            contentPanel.Controls.Clear();
+            contentPanel.Controls.Add(new UC_Tweaks() { Dock = DockStyle.Fill });
         }
     }
 }
