@@ -8,18 +8,19 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <RootNamespace>hhh</RootNamespace>
     <AssemblyName>hhh</AssemblyName>
-
-    <!-- 🔥 هذا هو الحل الأساسي -->
     <OutputPath>bin\Release\</OutputPath>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
 
   <ItemGroup>
