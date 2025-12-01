@@ -10,4 +10,9 @@
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
   </PropertyGroup>
 
+  <!-- 👇 المرجع المطلوب لـ ServiceController -->
+  <ItemGroup>
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
+
 </Project>
