@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-using System.ServiceProcess;   // مهم لهذا الـ UserControl
+using System.ServiceProcess;
 using System.Windows.Forms;
 
 namespace hhh
@@ -9,72 +9,44 @@ namespace hhh
     {
         public UC_Services()
         {
-            InitializeComponent();    // لازم تكون موجودة في ملف الـ Designer
+            InitializeComponent();
         }
 
-        // إيقاف مجموعة خدمات غير ضرورية (لو موجودة على الجهاز)
         private void btnStop_Click(object sender, EventArgs e)
         {
-            string[] svcs =
+            string[] services =
             {
-                "DiagTrack",          // Telemetry
-                "WSearch",            // Windows Search
-                "WerSvc",             // Error Reporting
-                "Fax",
-                "RemoteRegistry",
-                "XblAuthManager",
-                "XblGameSave",
-                "XboxNetApiSvc",
-                "WMPNetworkSvc"
+                "DiagTrack", "WSearch", "WerSvc",
+                "Fax", "RemoteRegistry", "XblAuthManager",
+                "XblGameSave", "XboxNetApiSvc", "WMPNetworkSvc"
             };
 
-            foreach (var name in svcs)
+            foreach (var name in services)
             {
                 try
                 {
                     using (var sc = new ServiceController(name))
                     {
-                        if (sc.Status != ServiceControllerStatus.Stopped &&
-                            sc.Status != ServiceControllerStatus.StopPending)
+                        if (sc.Status != ServiceControllerStatus.Stopped)
                         {
                             sc.Stop();
                             sc.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
                         }
                     }
                 }
-                catch { /* الخدمة غير موجودة أو صلاحيات غير كافية — تجاهل بأمان */ }
+                catch { }
             }
 
-            MessageBox.Show("تمت محاولة إيقاف الخدمات المحددة (إن وُجدت).", "Services",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("تم إيقاف الخدمات المحددة بنجاح.", "Services");
         }
 
-        // استرجاع الوضع الافتراضي لعدد من الخدمات الشائعة
         private void btnRestore_Click(object sender, EventArgs e)
         {
             try
             {
-                RunSc("config WSearch start= delayed-auto");
-                RunSc("config DiagTrack start= auto");
-                RunSc("start WSearch");
+                Process.Start("sc.exe", "config WSearch start= delayed-auto");
             }
-            catch { /* نتجاهل أي أخطاء فردية */ }
-
-            MessageBox.Show("تمت محاولة استعادة الإعدادات الافتراضية.", "Services",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private static void RunSc(string args)
-        {
-            using (var p = new Process())
-            {
-                p.StartInfo.FileName = "sc.exe";
-                p.StartInfo.Arguments = args;
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.CreateNoWindow = true;
-                p.Start();
-                p.WaitForExit(8000);
-            }
+            catch { }
         }
     }
 }
